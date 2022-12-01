@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./public/assets/css/style.css">
+  <link rel="stylesheet" href="./public/assets/css/modal.css">
   <title>Shi Fu Mi | Style Airsoft</title>
 </head>
 
@@ -14,17 +15,32 @@
   <div id="sang" ></div>
   <!-- Ici se trouve mon header -->
   <header class="header">
-    <div class="choix du pseudo">
+    <div id="modal">
+      <div class="modalContent">
+        <div class="modalHeader">
+          <span class="modalClose" onclick="closeModal()">&times;</span>
+          <h2>Veuillez choisir votre personnage ainsi que votre pseudo pour cette partie</h2>
+          </span>
+        </div>
+        <div class="modalBody">
+          <div class="main">
+            <form id="form">
+              <label for="username">Pseudo</label>
+              <input type="text" for="username" name="username" id="username">
+              <button id="validate">Valider</button>
+            </form>
+            <img id="rounedfemale1" src="./public/assets/img/femmeSniper2.png" alt="">
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="secondDiv">
       <h1>shi fu mi <span>Airsoft Mod</span></h1>
-      <form>
-        <label for="username">Pseudo</label>
-        <input type="text" for="username" name="username" id="username">
-        <button id="validate">Valider</button>
-      </form>
-     
+      <button id="openModal" onclick="showModal()">Personnage & pseudo</button>
     </div>
   </header>
   <main>
+
     <!-- Ma div qui contienderas tout les boutons utile a la partie -->
     <div class="buttons">
       <div class="buttonPlayer">
@@ -57,7 +73,8 @@
         <div class="health">
           <!-- La vie du joueur -->
           <p class="playerhealthp">Vie du <span id="playername"> joueur </span> <span id="victoryNumber"></span></p>
-          <img class="player haut" src="./public/assets/img/player.png" alt="">
+          <img id="femaleShootSniper"  src="./public/assets/img/femmeSniperMove2.png" alt="">
+          <img id="Playercharacters" class="player haut" src="./public/assets/img/femmeSniper2.png" alt="">
           <img id="bulletp" class="bullet" src="./public/assets/img/Bullet.png" alt="">
           <div class="progress">
             <div id="playerhealth" class="playerhealthplacement" style="width: 100%"><span class="haut" >100/100</span></div>
@@ -67,7 +84,7 @@
             <!-- la vie du monstre -->
             <p class="computerhealthp">Vie du Monstre <span id="looseNumber"></span></p>
             <img id="bulletm" class="bullet" src="./public/assets/img/Bulletm.png" alt="">
-            <img class="monster haut" src="./public/assets/img/monster2.png" alt="">
+            <img class="monster haut" src="./public/assets/img/femmeSniper1.png" alt="">
             <div class="progress">
               <div id="computerhealth" class="computerhealthplacement" style="width: 100%"><span>100/100</span></div>
             </div>  

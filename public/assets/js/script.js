@@ -43,14 +43,15 @@ let players = {pseudo : 'Pseudo',
               victoire : 0 ,
               defaite : 0 }
 let calcul ;
-
+let playercharacters = document.getElementById('Playercharacters')
+let femaleShoot = document.getElementById('femaleShootSniper')
 // Récupération des balle qui seront tiré via une classe CSS aisni que du sang qui s'afficheras à l'écran sous 20/100 de vie pour le joueur
 let bulletp = document.getElementById('bulletp')
 let bulletm = document.getElementById('bulletm')
 let blood = document.getElementById('sang')
 let victorynumber = document.getElementById('victoryNumber')
 let looseNumber = document.getElementById('looseNumber')
-
+window.localStorage.setItem('test', JSON.stringify(players))
 btnplayer.addEventListener('click', (e) => {
   e.preventDefault(true)
   players = {pseudo : `${inputplayer.value}`,
@@ -70,19 +71,33 @@ let replayGame = () => {
   window.location.reload(true);
  
 }
-players = JSON.parse(window.localStorage.getItem('test'))
-console.log(players)
-currentplayer = `${players.pseudo}` 
-nameplayerp.textContent = players.pseudo
-console.log(currentplayer)
-playerScore = players.victoire
-console.log(playerScore)
-cpuScore = players.defaite
-console.log(cpuScore)
-victorynumber.textContent = ` Victoire = ${playerScore}`
-looseNumber.textContent = ` Défaite = ${cpuScore}`
-console.log(playerScore)
-console.log(cpuScore)
+let test = localStorage.getItem('test')
+    players = JSON.parse(test)
+    console.log(players)
+    currentplayer = `${players.pseudo}` 
+    nameplayerp.textContent = players.pseudo
+    console.log(currentplayer)
+    playerScore = players.victoire
+    console.log(playerScore)
+    cpuScore = players.defaite
+    console.log(cpuScore)
+    victorynumber.textContent = ` Victoire = ${playerScore}`
+    looseNumber.textContent = ` Défaite = ${cpuScore}`
+    console.log(playerScore)
+    console.log(cpuScore)
+// players = JSON.parse(window.localStorage.getItem('test'))
+// console.log(players)
+// currentplayer = `${players.pseudo}` 
+// nameplayerp.textContent = players.pseudo
+// console.log(currentplayer)
+// playerScore = players.victoire
+// console.log(playerScore)
+// cpuScore = players.defaite
+// console.log(cpuScore)
+// victorynumber.textContent = ` Victoire = ${playerScore}`
+// looseNumber.textContent = ` Défaite = ${cpuScore}`
+// console.log(playerScore)
+// console.log(cpuScore)
 // Ici se trouve ma fonction global qui permet de joué
 let playRound = (playerSelection, cpuSelection) => {  
 
@@ -114,9 +129,13 @@ let playRound = (playerSelection, cpuSelection) => {
           playerSelection === "shotgun" && cpuSelection === "sniper"){
             cpuhealth = cpuhealth - 10 ;
             cpuBar.style.width = cpuhealth + '%';
+            playercharacters.classList.add('playerCharacterFemaleShoot')
+            femaleShoot.classList.add('playerCharacterFemaleShoot2')
             bulletp.classList.add('bulletTransitionPlayer')
             setTimeout(() => {
               bulletp.classList.remove('bulletTransitionPlayer')
+              playercharacters.classList.remove('playerCharacterFemaleShoot')
+              femaleShoot.classList.remove('playerCharacterFemaleShoot2')
             }, 1500);
             matchResultDisplay.textContent = `Tu as mis une balle au Monstre`
             cpuBar.firstChild.innerHTML =  'CPU :' + cpuhealth +  `/` + 100 ;
@@ -172,3 +191,22 @@ btns.forEach(btn => {
     btn.addEventListener('click', playRound)};
 })
 rematchBtn.addEventListener('click', replayGame)
+
+
+// test modal
+let openModal = document.getElementById('openModal')
+
+function closeModal() {
+  var modal = document.getElementById('modal');
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+openModal.addEventListener('click' , () => {
+  var modal = document.getElementById('modal')
+  modal.style.display = "block";
+})

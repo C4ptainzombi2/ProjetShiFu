@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./public/assets/css/style.css">
+  <title>Shi Fu Mi | Style Airsoft</title>
+</head>
+
+<body>
+  <!-- Ici se trouve ma div qui ferras office de sang si le joueur à moin de 20HP -->
+  <div id="sang" ></div>
+  <!-- Ici se trouve mon header -->
+  <header class="header">
+    <div class="choix du pseudo">
+      <h1>shi fu mi <span>Airsoft Mod</span></h1>
+      <form>
+        <label for="username">Pseudo</label>
+        <input type="text" for="username" name="username" id="username">
+        <button id="validate">Valider</button>
+      </form>
+     
+    </div>
+  </header>
+  <main>
+    <!-- Ma div qui contienderas tout les boutons utile a la partie -->
+    <div class="buttons">
+      <div class="buttonPlayer">
+        <button id="sniper" type="button" class="rock btn" name="sniper">
+          <input  name="sniper" type="image"  src="./public/assets/img/sniper.svg" height="80" width="170"/> 
+        </button>
+        <button id="shotgun" class="paper btn" name="shotgun">
+          <input  name="shotgun" type="image"  src="./public/assets/img/shotgun.svg" height="80" width="170"/>
+        </button>
+        <button id="riflegun" class="scissors btn" name="riflegun">
+          <input  name="riflegun" type="image" src="./public/assets/img/riflegun.svg" height="80" width="170"/>
+        </button>
+      </div>
+      <div class="buttonMonster">
+        <button id="sniperm" type="button" class="btn btn-Monster" name="sniper">
+          <input  name="sniper" type="image"  src="./public/assets/img/sniper.svg" height="80" width="170"/> 
+        </button>
+        <button id="shotgunm" class="btn btn-Monster" name="shotgun">
+          <input  name="shotgunm" type="image"  src="./public/assets/img/shotgun.svg" height="80" width="170"/>
+        </button>
+        <button id="riflegunm" class="btn btn-Monster" name="riflegun">
+          <input  name="riflegunm" type="image" src="./public/assets/img/riflegun.svg" height="80" width="170"/>
+        </button>
+      </div>
+    </div>
+    <!-- Ici se trouverons les résultats du match ainsi que les barre de vie -->
+    <div id="results" class="results">
+      <div class="match-result-display"></div>
+      <div class="globalhealth">
+        <div class="health">
+          <!-- La vie du joueur -->
+          <p class="playerhealthp">Vie du <span id="playername"> joueur </span> <span id="victoryNumber"></span></p>
+          <img class="player haut" src="./public/assets/img/player.png" alt="">
+          <img id="bulletp" class="bullet" src="./public/assets/img/Bullet.png" alt="">
+          <div class="progress">
+            <div id="playerhealth" class="playerhealthplacement" style="width: 100%"><span class="haut" >100/100</span></div>
+          </div>
+          </div>
+          <div class="health">
+            <!-- la vie du monstre -->
+            <p class="computerhealthp">Vie du Monstre <span id="looseNumber"></span></p>
+            <img id="bulletm" class="bullet" src="./public/assets/img/Bulletm.png" alt="">
+            <img class="monster haut" src="./public/assets/img/monster2.png" alt="">
+            <div class="progress">
+              <div id="computerhealth" class="computerhealthplacement" style="width: 100%"><span>100/100</span></div>
+            </div>  
+          </div>
+      </div>  
+      <div class="selections-display"></div>
+      <div class="match-score-display"></div>
+    </div>
+    </div>
+  </main>
+
+
+<!-- Ici se trouve une div caché qui apparaiteras en fin de partie  -->
+  <div class="game-result-div">
+    <div class="game-result-wrapper">
+      <h1 class="game-result"></h1>
+      <h3 class="game-final-score"></h3>
+    </div>
+    <div class="rematch-btn">
+      <button>REMATCH</button>
+    </div>
+  </div>
+
+</body>
+<!-- Ici j'intègre mon fichiez JS -->
+<script src="./public/assets/js/script.js"></script>
+
+</html>

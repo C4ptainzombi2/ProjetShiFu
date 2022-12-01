@@ -1,0 +1,174 @@
+// Choix random de l'ordinateur
+let gameArr = ["sniper", "shotgun", "riflegun"]
+let gameArrs;
+let getComputerSelection = () => gameArr[Math.floor(Math.random() * gameArr.length) ];
+// Score du joueur (non utilisée actuellement)
+let playerScore = 0;
+let cpuScore = 0;
+let score = `Player : ${playerScore} CPU : ${cpuScore}`
+// Récupération des bouton que le joueur selectionne
+let sniper_btn = document.querySelector('#sniper');
+let shotgun_btn = document.querySelector('#shotgun');
+let riflegun_btn = document.querySelector('#riflegun');
+let btns = document.querySelectorAll('.buttonPlayer');
+// Récupération des boutons du monster (indisponible pour le joueur)
+let btnsM = document.querySelectorAll('.btn-Monster')
+let sniperm_btn = document.querySelector('#sniperm');
+let shotgunm_btn = document.querySelector('#shotgunm');
+let riflegunm_btn = document.querySelector('#riflegunm');
+
+// Récupération des différentes div pour le match
+let resultsDiv = document.querySelector('#results');
+let matchResultDisplay = document.querySelector('.match-result-display');
+let playerScoreDisplay = document.querySelector('.player-score-display');
+let cpuScoreDisplay = document.querySelector('.cpu-score-display');
+let selectionsDisplay = document.querySelector('.selections-display');
+let matchScoreDisplay = document.querySelector('.match-score-display');
+// Récupération de la div game result qui n'est pas visible en début de partie uniquement à la fin
+let gameResultDiv = document.querySelector('.game-result-div');
+let gameResult = document.querySelector('.game-result');
+let gameFinalScore = document.querySelector('.game-final-score');
+let gameResultWrapper = document.querySelector('.game-result-wrapper')
+let rematchBtn = document.querySelector('.rematch-btn');
+// Définitions de la vie du joueur et du Monstre (100HP) et récupération des bars de vies
+let playerlife = 100;
+let cpuhealth = 100;
+let cpuBar = document.getElementById('computerhealth')
+let playerBar = document.getElementById('playerhealth')
+// Je récupère mon bouton pour le pseudo du joueur
+let nameplayerp = document.getElementById('playername')
+let inputplayer = document.getElementById('username')
+let btnplayer = document.getElementById('validate')
+let players = {pseudo : 'Pseudo',
+              victoire : 0 ,
+              defaite : 0 }
+let calcul ;
+
+// Récupération des balle qui seront tiré via une classe CSS aisni que du sang qui s'afficheras à l'écran sous 20/100 de vie pour le joueur
+let bulletp = document.getElementById('bulletp')
+let bulletm = document.getElementById('bulletm')
+let blood = document.getElementById('sang')
+let victorynumber = document.getElementById('victoryNumber')
+let looseNumber = document.getElementById('looseNumber')
+
+btnplayer.addEventListener('click', (e) => {
+  e.preventDefault(true)
+  players = {pseudo : `${inputplayer.value}`,
+             victoire : `${playerScore}`,
+             defaite : `${cpuScore}`}
+  currentplayer = inputplayer.value
+  nameplayerp.textContent = currentplayer
+})
+
+
+// Ici la fonction rejoué qui recharge la page 
+
+
+let replayGame = () => {
+  
+  window.localStorage.setItem('test', JSON.stringify(players))
+  window.location.reload(true);
+ 
+}
+players = JSON.parse(window.localStorage.getItem('test'))
+console.log(players)
+currentplayer = `${players.pseudo}` 
+nameplayerp.textContent = players.pseudo
+console.log(currentplayer)
+playerScore = players.victoire
+console.log(playerScore)
+cpuScore = players.defaite
+console.log(cpuScore)
+victorynumber.textContent = ` Victoire = ${playerScore}`
+looseNumber.textContent = ` Défaite = ${cpuScore}`
+console.log(playerScore)
+console.log(cpuScore)
+// Ici se trouve ma fonction global qui permet de joué
+let playRound = (playerSelection, cpuSelection) => {  
+
+  playerSelection = playerSelection.target.name
+  cpuSelection = getComputerSelection();
+  console.log(playerSelection);
+  console.log(cpuSelection);
+  // 1er if else qui dit que si la selection du joueur et différente de cellle de l'ordinateur alors on effectue la fonction sinon on affiche deux balle qui s'entrechoque
+      if (cpuSelection == sniperm_btn.name ){
+        sniperm_btn.classList.add('buttonMonsterHover')
+      setTimeout(() => {
+        sniperm_btn.classList.remove('buttonMonsterHover')
+      }, 500);
+    } else if (cpuSelection == riflegunm_btn.name) {
+      riflegunm_btn.classList.add('buttonMonsterHover')
+      setTimeout(() => {
+        riflegunm_btn.classList.remove('buttonMonsterHover')
+      }, 500);
+    } else if (cpuSelection == shotgunm_btn.name ){
+      shotgunm_btn.classList.add('buttonMonsterHover')
+      setTimeout(() => {
+        shotgunm_btn.classList.remove('buttonMonsterHover')
+      }, 500);
+    }
+  if (playerSelection !== cpuSelection) {
+        // 2ème conditions qui définis les armes qui gagne contre celle qui perdent
+      if (playerSelection === "sniper" && cpuSelection === "riflegun" ||
+          playerSelection === "riflegun" && cpuSelection === "shotgun" ||
+          playerSelection === "shotgun" && cpuSelection === "sniper"){
+            cpuhealth = cpuhealth - 10 ;
+            cpuBar.style.width = cpuhealth + '%';
+            bulletp.classList.add('bulletTransitionPlayer')
+            setTimeout(() => {
+              bulletp.classList.remove('bulletTransitionPlayer')
+            }, 1500);
+            matchResultDisplay.textContent = `Tu as mis une balle au Monstre`
+            cpuBar.firstChild.innerHTML =  'CPU :' + cpuhealth +  `/` + 100 ;
+            // Une autre sous conditions pour les perte du joueur
+          } else if(playerSelection === "sniper" && cpuSelection === "shotgun" ||
+                    playerSelection === "riflegun" && cpuSelection === "sniper" ||
+                    playerSelection === "shotgun" && cpuSelection === "riflegun") {
+                playerlife = playerlife - 10 ;
+                if (playerlife < 30 ) {
+                  blood.classList.add('firstplan')
+                }
+                bulletm.classList.add('bulletTransitionMonster')
+                setTimeout(() => {
+                  bulletm.classList.remove('bulletTransitionMonster')
+                }, 1500);
+                playerBar.style.width = `${playerlife}`+ '%'
+                playerBar.firstChild.innerHTML = `${currentplayer}` + playerlife +  `/` + 100 ;
+                matchResultDisplay.textContent = `Tu as pris une balle! `
+          }
+          // Une conditions pour l'égalité
+          } else {
+              bulletm.classList.add('egalityBulletM')
+              bulletp.classList.add('egalityBulletP')
+              setTimeout(() => {
+                bulletm.classList.remove('egalityBulletM')
+                bulletp.classList.remove('egalityBulletP')
+              }, 1500);
+              matchResultDisplay.textContent = `Vous avez la meme armes (aucun degats subits) ! `
+            }
+            // Ici sont les conditions de fin de partie soit le joueur à 0HP ou le Monstre et ensuite on affiche la div caché
+    if(cpuhealth === 0 ){
+      gameResultDiv.style.display = 'flex';
+      gameResultWrapper.classList.add('victory');
+      gameResult.textContent = `Victoire`
+      gameFinalScore.textContent = `vie du joueur: ${playerlife} vie de l'Ordinateur: ${cpuhealth}`
+      bulletm.classList.remove('firstplan')
+      players.victoire++
+    } else if (playerlife === 0 ) {
+      players.defaite++
+      gameResultDiv.style.display = 'flex';
+      gameResultWrapper.classList.add('loose')
+      gameResult.textContent = `Loosers...`
+      gameFinalScore.textContent = `vie du joueur: ${playerlife} vie de l'Ordinateur: ${cpuhealth}`
+      bulletm.classList.remove('firstplan')
+    }
+    return
+  }
+  // Ici se trouve mes event listener sur les bouton qui permettent de lancez la partie
+btns.forEach(btn => {
+ if(playerlife === 0 || cpuhealth === 0) {
+    btn.removeEventListener('click', playRound)
+  }else{
+    btn.addEventListener('click', playRound)};
+})
+rematchBtn.addEventListener('click', replayGame)

@@ -78,6 +78,7 @@ html, body{
   font-size: 1.8rem;
  }
   .globalhealth{
+    
     display: flex;
     justify-content: space-between;
   }
@@ -89,8 +90,9 @@ html, body{
   }
   
   .header{
-    height: 25vh;
+    height: 5vh;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -100,12 +102,19 @@ html, body{
     background-color: rgb(134, 130, 130);
     font-family: patrick;
   }
+  .secondDiv{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
   
   main{
     display: flex;
+    height: 90vh;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    background:center no-repeat url(../img/7286636_31803.jpg);
   }
   .haut{
     z-index: 2;

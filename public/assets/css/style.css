@@ -384,8 +384,77 @@
   color: rgba(188, 53, 53, 0.950);
   font-family:  Tahoma, Geneva, Verdana, sans-serif;
 }
-
-  @media screen and (max-width:576px ) {
+  @media screen and (max-width:330px) {
+    body{
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+    .header{
+      font-size: 1rem;
+    }
+    #openModal{
+      margin-top: 0;
+    }
+    .globalScores{
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .scorePlayers{
+      margin-right: 0;
+    }
+    .scoreMonsters{
+      margin-left: 0.5rem;
+    }
+    .progressPlayer{
+      margin: 0.5rem;
+      margin-top: 1.5rem;
+      margin-right: 1rem;
+      margin-bottom: 5rem;
+      width: 35vw;
+      height: 8vh;
+    }
+    .progressMonster{
+      margin: 0.5rem;
+      margin-top: 1.5rem;
+      margin-left: 1rem;
+      margin-bottom: 5rem;
+      width: 35vw;
+      height: 8vh;
+    }
+    .scoresolo{
+      margin-bottom: 2.9rem;
+    }
+    .buttons{
+      justify-content: space-between;
+      margin-right: 1rem;
+    }
+    .buttonPlayer{
+      display: flex;
+      flex-direction: column;
+    }
+    .buttonMonster{
+      display: flex;
+      flex-direction: column;
+    }
+    .game-result-div{
+      align-items: center;
+      left: 8vw;
+    }
+    .game-result-wrapper{
+      padding: 1rem 1.1rem;
+      border-radius: 1.5rem;
+    }
+    .rematch-btn button {
+      padding: 1.5rem 2.5rem;
+    }
+    .results{
+      width: 100%;
+      font-size: 1.3rem;
+    }
+  }
+  @media screen and (max-width:850px ) {
       body{
         overflow-x: hidden;
         overflow-y: hidden;

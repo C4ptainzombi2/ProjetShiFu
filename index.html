@@ -15,6 +15,7 @@
   <div id="sang" ></div>
   <!-- Ici se trouve mon header -->
   <header class="header">
+    <!-- Ici se trouve ma modal -->
     <div id="modal">
       <div class="modalContent">
         <div class="modalHeader">
@@ -29,22 +30,39 @@
               <input type="text" for="username" name="username" id="username">
               <button id="validate">Valider</button>
             </form>
-            <img id="rounedfemale1" src="./public/assets/img/femmeSniper2.png" alt="">
-            <img id="rounedfemale2" src="./public/assets/img/player.png" alt="">
-            <img id="rounedfemale3" src="./public/assets/img/femmeSniper2.png" alt="">
-            <img id="rounedfemale4" src="./public/assets/img/femmeSniper2.png" alt="">
-
-        </div>
+          </div>
         </div>
       </div>
     </div>
+
+
     <div class="secondDiv">
-      <h1>shi fu mi <span>Airsoft Mod</span></h1>
+      <h1 class="boxshadowtext">shi fu mi <span>Airsoft Mod</span></h1>
       <button id="openModal" onclick="showModal()">Personnage & pseudo</button>
     </div>
   </header>
   <main>
+    <!-- Ici ce trouve mes Scores (Win & Défaites) -->
+    <div class="globalScores">
+      <div class="scorePlayers">
+        <div class="progressPlayer">
+          <div id="playerhealth" class="playerhealthplacement" style="width: 100%"><span class="haut" >100/100</span></div>
+        </div>
+        <div class="scoresolo">
+          <p id="PlayersScores" class="ScorePlayer"></p>
+        </div>  
 
+      </div>
+      <div class="scoreMonsters">
+        <div class="scoresolo">
+          <p id="MonsterScores" class="scoreMonster"></p>
+        </div>  
+        <div class="progressMonster">
+            <div id="computerhealth" class="computerhealthplacement" style="width: 100%"><span>100/100</span></div>
+          </div>
+
+      </div>
+    </div>
     <!-- Ma div qui contienderas tout les boutons utile a la partie -->
     <div class="buttons">
       <div class="buttonPlayer">
@@ -76,22 +94,17 @@
       <div class="globalhealth">
         <div class="health">
           <!-- La vie du joueur -->
-          <p class="playerhealthp">Vie du <span id="playername"> joueur </span> <span id="victoryNumber"></span></p>
           <img id="femaleShootSniper"  src="./public/assets/img/femmeSniperMove2.png" alt="">
           <img id="Playercharacters" class="player haut" src="./public/assets/img/femmeSniper2.png" alt="">
           <img id="bulletp" class="bullet" src="./public/assets/img/Bullet.png" alt="">
-          <div class="progress">
-            <div id="playerhealth" class="playerhealthplacement" style="width: 100%"><span class="haut" >100/100</span></div>
-          </div>
+          
           </div>
           <div class="health">
             <!-- la vie du monstre -->
-            <p class="computerhealthp">Vie du Monstre <span id="looseNumber"></span></p>
+              
             <img id="bulletm" class="bullet" src="./public/assets/img/Bulletm.png" alt="">
-            <img class="monster haut" src="./public/assets/img/femmeSniper1.png" alt="">
-            <div class="progress">
-              <div id="computerhealth" class="computerhealthplacement" style="width: 100%"><span>100/100</span></div>
-            </div>  
+            <img class="monster haut" src="./public/assets/img/monster.png" alt="">
+            
           </div>
       </div>  
       <div class="selections-display"></div>
@@ -114,6 +127,14 @@
 
 </body>
 <!-- Ici j'intègre mon fichiez JS -->
+
+
 <script src="./public/assets/js/script.js"></script>
 
 </html>
+
+
+
+
+
+

@@ -39,9 +39,9 @@
     background-color: #fefefe;
     margin: auto;
     padding: 0;
-    border: 1px solid #888;
+    border: 0.1rem solid #888;
     width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 0.4rem 0.6rem 0 rgba(0, 0, 0, 0.368),0 0.4rem 0.6rem rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -63,7 +63,7 @@
 
 .modalHeader {
     padding: 2px 16px;
-    background-color: #b02d33;
+    background-color: rgba(41, 63, 57, 0.421);
     color: white;
 }
 
@@ -72,7 +72,7 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    padding: 2px 16px;
+    padding: 0.3rem 1.2rem;
 }
 
 #openModal{
@@ -85,10 +85,14 @@
     height: 3vh;
 }
 #validate{
+    font-size: auto;
     width: 100%;
-    height: 5%;
+    height: 25%;
+    padding: 0.2rem;
+    box-shadow: 0.125rem 0.125rem black;
 }
 .main{
+    background-color:rgba(145, 153, 151, 0.421) ;
     display: flex;
     justify-content: space-around;
     width: 100%;

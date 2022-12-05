@@ -3,9 +3,7 @@ let gameArr = ["sniper", "shotgun", "riflegun"]
 let gameArrs;
 let getComputerSelection = () => gameArr[Math.floor(Math.random() * gameArr.length) ];
 // Score du joueur (non utilisée actuellement)
-let playerScore = 0;
-let cpuScore = 0;
-let score = `Player : ${playerScore} CPU : ${cpuScore}`
+
 // Récupération des bouton que le joueur selectionne
 let sniper_btn = document.querySelector('#sniper');
 let shotgun_btn = document.querySelector('#shotgun');
@@ -39,9 +37,7 @@ let playerBar = document.getElementById('playerhealth')
 let nameplayerp = document.getElementById('playername')
 let inputplayer = document.getElementById('username')
 let btnplayer = document.getElementById('validate')
-let players = {pseudo : 'Pseudo',
-              victoire : 0 ,
-              defaite : 0 }
+
 let calcul ;
 let playercharacters = document.getElementById('Playercharacters')
 let femaleShoot = document.getElementById('femaleShootSniper')
@@ -51,14 +47,26 @@ let bulletm = document.getElementById('bulletm')
 let blood = document.getElementById('sang')
 let victorynumber = document.getElementById('victoryNumber')
 let looseNumber = document.getElementById('looseNumber')
-window.localStorage.setItem('test', JSON.stringify(players))
+let ScoresP = document.getElementById('PlayersScores')
+let ScoresM = document.getElementById('MonsterScores')
+if (JSON.parse(window.localStorage.getItem('test', (players))) == true) {
+  var players = window.localStorage.getItem('test', JSON.stringify(players))
+} else {
+  players = {pseudo : `Pseudo`,
+             victoire : 0,
+             defaite : 0 }
+}
 btnplayer.addEventListener('click', (e) => {
   e.preventDefault(true)
+  playerScore = 0
+  cpuScore = 0
   players = {pseudo : `${inputplayer.value}`,
              victoire : `${playerScore}`,
              defaite : `${cpuScore}`}
   currentplayer = inputplayer.value
-  nameplayerp.textContent = currentplayer
+  ScoresP.textContent = playerScore
+  ScoresM.textContent = cpuScore
+  modal.style.display = "none";
 })
 
 
@@ -66,38 +74,18 @@ btnplayer.addEventListener('click', (e) => {
 
 
 let replayGame = () => {
-  
+  window.localStorage.removeItem('test')
   window.localStorage.setItem('test', JSON.stringify(players))
   window.location.reload(true);
  
 }
 let test = localStorage.getItem('test')
     players = JSON.parse(test)
-    console.log(players)
     currentplayer = `${players.pseudo}` 
-    nameplayerp.textContent = players.pseudo
-    console.log(currentplayer)
-    playerScore = players.victoire
-    console.log(playerScore)
-    cpuScore = players.defaite
-    console.log(cpuScore)
-    victorynumber.textContent = ` Victoire = ${playerScore}`
-    looseNumber.textContent = ` Défaite = ${cpuScore}`
-    console.log(playerScore)
-    console.log(cpuScore)
-// players = JSON.parse(window.localStorage.getItem('test'))
-// console.log(players)
-// currentplayer = `${players.pseudo}` 
-// nameplayerp.textContent = players.pseudo
-// console.log(currentplayer)
-// playerScore = players.victoire
-// console.log(playerScore)
-// cpuScore = players.defaite
-// console.log(cpuScore)
-// victorynumber.textContent = ` Victoire = ${playerScore}`
-// looseNumber.textContent = ` Défaite = ${cpuScore}`
-// console.log(playerScore)
-// console.log(cpuScore)
+    let playerScore = players.victoire
+    let cpuScore = players.defaite
+    ScoresP.textContent = playerScore
+    ScoresM.textContent = cpuScore
 // Ici se trouve ma fonction global qui permet de joué
 let playRound = (playerSelection, cpuSelection) => {  
 
@@ -146,13 +134,14 @@ let playRound = (playerSelection, cpuSelection) => {
                 playerlife = playerlife - 10 ;
                 if (playerlife < 30 ) {
                   blood.classList.add('firstplan')
+                  playercharacters.src = './public/assets/img/femme30hp.png'
                 }
                 bulletm.classList.add('bulletTransitionMonster')
                 setTimeout(() => {
                   bulletm.classList.remove('bulletTransitionMonster')
                 }, 1500);
                 playerBar.style.width = `${playerlife}`+ '%'
-                playerBar.firstChild.innerHTML = `${currentplayer}` + playerlife +  `/` + 100 ;
+                playerBar.firstChild.innerHTML = `${currentplayer}` + ' ' + playerlife +  `/` + 100 ;
                 matchResultDisplay.textContent = `Tu as pris une balle! `
           }
           // Une conditions pour l'égalité
@@ -174,6 +163,7 @@ let playRound = (playerSelection, cpuSelection) => {
       bulletm.classList.remove('firstplan')
       players.victoire++
     } else if (playerlife === 0 ) {
+      playercharacters.src = './public/assets/img/femme0HP.png'
       players.defaite++
       gameResultDiv.style.display = 'flex';
       gameResultWrapper.classList.add('loose')
@@ -210,3 +200,6 @@ openModal.addEventListener('click' , () => {
   var modal = document.getElementById('modal')
   modal.style.display = "block";
 })
+
+
+// Choix du personnage 

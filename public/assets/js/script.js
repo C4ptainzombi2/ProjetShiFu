@@ -50,11 +50,14 @@ let looseNumber = document.getElementById('looseNumber')
 let ScoresP = document.getElementById('PlayersScores')
 let ScoresM = document.getElementById('MonsterScores')
 if (JSON.parse(window.localStorage.getItem('test', (players))) == true) {
-  var players = window.localStorage.getItem('test', JSON.stringify(players))
+
 } else {
   players = {pseudo : `Pseudo`,
              victoire : 0,
              defaite : 0 }
+   var players = window.localStorage.getItem('test', JSON.stringify(players))
+
+             
 }
 btnplayer.addEventListener('click', (e) => {
   e.preventDefault(true)

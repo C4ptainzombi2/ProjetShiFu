@@ -52,6 +52,7 @@
  } 
  .scoresolo{
   display: flex;
+  margin-top: 2rem;
   border-radius: 1.5rem;
   justify-content: center;
   align-content: center;

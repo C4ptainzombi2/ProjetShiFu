@@ -49,13 +49,13 @@ let victorynumber = document.getElementById('victoryNumber')
 let looseNumber = document.getElementById('looseNumber')
 let ScoresP = document.getElementById('PlayersScores')
 let ScoresM = document.getElementById('MonsterScores')
-if (JSON.parse(window.localStorage.getItem('test', (players))) == true) {
+if (JSON.parse(window.localStorage.getItem('test')) == true) {
 
-} else if  (JSON.parse(window.localStorage.getItem('test', (players))) == false) {
+} else if  (JSON.parse(window.localStorage.getItem('test')) == false) {
   players = { pseudo : `Pseudo`,
              victoire : 0,
              defaite : 0 }
-   var players = window.localStorage.getItem('test', JSON.stringify(players))
+   var players = window.localStorage.getItem('test')
 }
 btnplayer.addEventListener('click', (e) => {
   e.preventDefault(true)

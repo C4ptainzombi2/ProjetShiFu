@@ -51,11 +51,10 @@ let ScoresP = document.getElementById('PlayersScores')
 let ScoresM = document.getElementById('MonsterScores')
 if (JSON.parse(window.localStorage.getItem('test')) == true) {
 
-} else if  (JSON.parse(window.localStorage.getItem('test')) == false) {
+} else {
   players = { pseudo : `Pseudo`,
              victoire : 0,
              defaite : 0 }
-   var players = window.localStorage.getItem('test')
 }
 btnplayer.addEventListener('click', (e) => {
   e.preventDefault(true)
@@ -80,8 +79,8 @@ let replayGame = () => {
   window.location.reload(true);
  
 }
-    currentplayer = players.pseudo 
-    let playerScore = players.victoire
+currentplayer = players.pseudo 
+let playerScore = players.victoire
     let cpuScore = players.defaite
     ScoresP.textContent = playerScore
     ScoresM.textContent = cpuScore

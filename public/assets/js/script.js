@@ -42,8 +42,7 @@ let calcul ;
 let playercharacters = document.getElementById('Playercharacters')
 let femaleShoot = document.getElementById('femaleShootSniper')
 // Récupération des balle qui seront tiré via une classe CSS aisni que du sang qui s'afficheras à l'écran sous 20/100 de vie pour le joueur
-let bulletp = document.getElementById('bulletp')
-let bulletm = document.getElementById('bulletm')
+
 let blood = document.getElementById('sang')
 let victorynumber = document.getElementById('victoryNumber')
 let looseNumber = document.getElementById('looseNumber')
@@ -117,9 +116,7 @@ let playRound = (playerSelection, cpuSelection) => {
             cpuBar.style.width = cpuhealth + '%';
             playercharacters.classList.add('playerCharacterFemaleShoot')
             femaleShoot.classList.add('playerCharacterFemaleShoot2')
-            bulletp.classList.add('bulletTransitionPlayer')
             setTimeout(() => {
-              bulletp.classList.remove('bulletTransitionPlayer')
               playercharacters.classList.remove('playerCharacterFemaleShoot')
               femaleShoot.classList.remove('playerCharacterFemaleShoot2')
             }, 1500);
@@ -134,22 +131,11 @@ let playRound = (playerSelection, cpuSelection) => {
                   blood.classList.add('firstplan')
                   playercharacters.src = './public/assets/img/femme30hp.png'
                 }
-                bulletm.classList.add('bulletTransitionMonster')
-                setTimeout(() => {
-                  bulletm.classList.remove('bulletTransitionMonster')
-                }, 1500);
                 playerBar.style.width = `${playerlife}`+ '%'
                 playerBar.firstChild.innerHTML = `${currentplayer}` + ' ' + playerlife +  `/` + 100 ;
                 matchResultDisplay.textContent = `Tu as pris une balle! `
           }
           // Une conditions pour l'égalité
-          } else {
-              bulletm.classList.add('egalityBulletM')
-              bulletp.classList.add('egalityBulletP')
-              setTimeout(() => {
-                bulletm.classList.remove('egalityBulletM')
-                bulletp.classList.remove('egalityBulletP')
-              }, 1500);
               matchResultDisplay.textContent = `Vous avez la meme armes (aucun degats subits) ! `
             }
             // Ici sont les conditions de fin de partie soit le joueur à 0HP ou le Monstre et ensuite on affiche la div caché
@@ -158,8 +144,7 @@ let playRound = (playerSelection, cpuSelection) => {
       gameResultWrapper.classList.add('victory');
       gameResult.textContent = `Victoire`
       gameFinalScore.textContent = `vie du joueur: ${playerlife} vie de l'Ordinateur: ${cpuhealth}`
-      bulletm.classList.remove('firstplan')
-      players.victoire++
+     players.victoire++
     } else if (playerlife === 0 ) {
       playercharacters.src = './public/assets/img/femme0HP.png'
       players.defaite++
@@ -167,8 +152,7 @@ let playRound = (playerSelection, cpuSelection) => {
       gameResultWrapper.classList.add('loose')
       gameResult.textContent = `Loosers...`
       gameFinalScore.textContent = `vie du joueur: ${playerlife} vie de l'Ordinateur: ${cpuhealth}`
-      bulletm.classList.remove('firstplan')
-    }
+   }
     return
   }
   // Ici se trouve mes event listener sur les bouton qui permettent de lancez la partie

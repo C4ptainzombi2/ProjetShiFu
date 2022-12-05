@@ -148,6 +148,7 @@
   .globalhealth{
     display: flex;
     justify-content: space-around;
+    margin-top: 15vh;
   }
   .computerhealthp{
     margin-left: 3rem;

@@ -41,17 +41,15 @@ let btnplayer = document.getElementById('validate')
 let calcul ;
 let playercharacters = document.getElementById('Playercharacters')
 let femaleShoot = document.getElementById('femaleShootSniper')
-// Récupération des balle qui seront tiré via une classe CSS aisni que du sang qui s'afficheras à l'écran sous 20/100 de vie pour le joueur
-
 let blood = document.getElementById('sang')
 let victorynumber = document.getElementById('victoryNumber')
 let looseNumber = document.getElementById('looseNumber')
 let ScoresP = document.getElementById('PlayersScores')
 let ScoresM = document.getElementById('MonsterScores')
-if (JSON.parse(window.localStorage.getItem('test')) == true) {
-
+if (window.localStorage.getItem('test')) {
+  var players = JSON.parse(window.localStorage.getItem('test'))
 } else {
-  players = { pseudo : `Pseudo`,
+  var players = { pseudo : `Pseudo`,
              victoire : 0,
              defaite : 0 }
 }
@@ -78,9 +76,11 @@ let replayGame = () => {
   window.location.reload(true);
  
 }
-currentplayer = players.pseudo 
-let playerScore = players.victoire
+    let currentplayer = players.pseudo 
+    let playerScore = players.victoire
     let cpuScore = players.defaite
+    console.log(playerScore)
+    console.log(cpuScore)
     ScoresP.textContent = playerScore
     ScoresM.textContent = cpuScore
 // Ici se trouve ma fonction global qui permet de joué
